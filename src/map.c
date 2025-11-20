@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 18:47:32 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:12:12 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int map_load(t_map *map, char *filename)
 
     fd = open(filename, O_RDONLY);
     if (fd < 0) {
-        printf("Error: Cannot open file '%s'\n", filename);
+        perror("Error: Cannot reopen file");
         return (0);
     }
 
@@ -71,7 +71,7 @@ int map_load(t_map *map, char *filename)
     // 3. читаем строки карты во второй проход
     fd = open(filename, O_RDONLY);
     if (fd < 0) {
-        printf("Error: Cannot reopen file '%s'\n", filename);
+        perror("Error: Cannot reopen file");
         free(map->grid);
         map->grid = NULL;
         return (0);

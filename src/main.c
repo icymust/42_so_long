@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 18:42:39 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:14:24 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int main(int ac, char **av)
         return (1);
     }
 
+    //установка размеров окна
+    game.vars.win_height = game.map.height * TILE_SIZE;
+    game.vars.win_width = game.map.width * TILE_SIZE;
+
     printf("Map loaded: %d x %d\n", game.map.width, game.map.height);
 
     // -- MLX --
@@ -55,7 +59,7 @@ int main(int ac, char **av)
         return (1);
     }
 
-    game.vars.win = mlx_new_window(game.vars.mlx, 500, 500, "Escape from aliens");
+    game.vars.win = mlx_new_window(game.vars.mlx, game.vars.win_width, game.vars.win_height, "Escape from aliens");
     mlx_put_image_to_window(game.vars.mlx, game.vars.win,
                             game.player.img, 0, 0);
 

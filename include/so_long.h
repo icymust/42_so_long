@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 18:42:20 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:11:10 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@
 #include "../lib/mlx/mlx.h"
 #include "../lib/libft/libft.h"
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <fcntl.h>
 
+//delete
+#include <string.h>
+#include <stdio.h>
+
+#define TILE_SIZE 64
+
 typedef struct s_vars {
-    void  *mlx;
-    void  *win;
-    int x;
+    void    *mlx;
+    void    *win;
+    int     win_width;
+    int     win_height;
 } t_vars;
 
 typedef struct s_map {

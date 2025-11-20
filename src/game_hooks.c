@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 18:36:52 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/20 19:17:57 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int move_player(t_game *game, char c){
     mlx_clear_window(game->vars.mlx, game->vars.win);
-    if(c == 'r' && game->player.pos_x<435){
-        game->player.pos_x += 15;
+    if(c == 'r'){
+        game->player.pos_x += 64;
         game->player.steps ++;
         // printf("Amount of steps: %i\n", game->player.steps);
     }
     else if(c =='l'){
-        game->player.pos_x -= 15;
+        game->player.pos_x -= 64;
         game->player.steps ++;
         // printf("Amount of steps: %i\n", game->player.steps);
     }
     else if(c =='u'){
-        game->player.pos_y -= 15;
+        game->player.pos_y -= 64;
         game->player.steps ++;
         // printf("Amount of steps: %i\n", game->player.steps);
     }
     else if(c =='d'){
-        game->player.pos_y += 15;
+        game->player.pos_y += 64;
         game->player.steps ++;
         // printf("Amount of steps: %i\n", game->player.steps);
     }
