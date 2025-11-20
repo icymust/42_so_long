@@ -37,3 +37,16 @@ installing it using its sources.
 - You have to turn in a Makefile which will compile your source files. It must not
 relink.
 - Your program must take a map description file with the extension .ber as a parametr.
+
+## Makefile
+Команда $(CC) $(OBJS) -Llib/mlx -lmlx -lz -framework OpenGL -framework AppKit -o $(NAME):
+- $(CC): Использует компилятор cc.
+- $(OBJS): Список объектных файлов.
+- Llib/mlx: Указывает путь к библиотеке mlx (в папке mlx).
+- lmlx: Подключает библиотеку mlx.
+- lz: Подключает библиотеку zlib (используется для работы с PNG-файлами).
+- framework OpenGL: Подключает фреймворк OpenGL (для графики).
+- framework AppKit: Подключает фреймворк AppKit (для работы с окнами на macOS).
+- o $(NAME): Указывает имя выходного файла (в данном случае so_long).
+
+## Start programm

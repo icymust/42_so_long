@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/19 15:51:55 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/15 12:56:27 by mmustone          #+#    #+#             */
+/*   Updated: 2025/08/04 10:31:26 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#include "libft.h"
 
-#include "lib/gnl/get_next_line.h"
-#include "mlx/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*a;
 
-#endif
+	a = b;
+	while (len > 0)
+	{
+		*a = (unsigned char)c;
+		len--;
+		a++;
+	}
+	return (b);
+}

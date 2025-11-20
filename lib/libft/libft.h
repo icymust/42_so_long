@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/08 16:25:55 by mmustone          #+#    #+#             */
-/*   Updated: 2025/09/08 17:11:26 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/17 08:01:57 by mmustone          #+#    #+#             */
+/*   Updated: 2025/11/20 18:48:23 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
-
-# define MAXF 10000
-
-char	*get_next_line(int fd);
-int		gnl_strlen(const char *s);
-char	*gnl_strchr(const char *s, size_t c);
-char	*gnl_strjoin(char *s1, const char *s2);
-char	*gnl_strdup(const char *s);
-char	*gnl_substr(const char *s, size_t start, size_t len);
+void	*ft_memset(void *b, int c, size_t len);
+size_t	ft_strlen(const char *s);
 
 #endif

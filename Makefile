@@ -2,8 +2,9 @@ NAME    = so_long
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 
-SRCS    = main.c lib/gnl/get_next_line.c \
-lib/gnl/get_next_line_utils.c
+SRCS    = src/main.c src/map.c src/map_check.c src/game_hooks.c src/game_utils.c \
+lib/gnl/get_next_line.c lib/gnl/get_next_line_utils.c \
+lib/libft/ft_memset.c lib/libft/ft_strlen.c
 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
@@ -15,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 # 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -lz -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -Llib/mlx -lmlx -lz -framework OpenGL -framework AppKit -o $(NAME)
 
 all: $(NAME)
 
