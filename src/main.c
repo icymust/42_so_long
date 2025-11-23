@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 19:14:24 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:44:16 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,12 @@
 int main(int ac, char **av)
 {
     t_game game;
-    char *path = "./textures/player.png";
-    int img_width = 64;
-    int img_height = 64;
 
-    if (ac < 2) {
+    if (ac < 2 || ac > 2) {
         printf("Usage: %s <map_file>\n", av[0]);
         return (1);
     }
 
-    // обнуляем всю структуру игры, чтобы все указатели были NULL
     ft_memset(&game, 0, sizeof(t_game));
 
     if (!map_load(&game.map, av[1])) {
@@ -34,13 +30,10 @@ int main(int ac, char **av)
         return (1);
     }
 
-    //установка размеров окна
     game.vars.win_height = game.map.height * TILE_SIZE;
     game.vars.win_width = game.map.width * TILE_SIZE;
 
     printf("Map loaded: %d x %d\n", game.map.width, game.map.height);
-
-    // -- MLX --
 
     game.vars.mlx = mlx_init();
     if (!game.vars.mlx) {
@@ -49,19 +42,28 @@ int main(int ac, char **av)
         return (1);
     }
 
-    game.player.img = mlx_png_file_to_image(game.vars.mlx,
-                                            path,
-                                            &img_width,
-                                            &img_height);
-    if (!game.player.img) {
-        free_map(&game.map);
-        printf("Error: Failed to load image '%s'\n", path);
+    if (!init_textures(&game))
+    {
+        close_win(&game);
         return (1);
     }
 
-    game.vars.win = mlx_new_window(game.vars.mlx, game.vars.win_width, game.vars.win_height, "Escape from aliens");
-    mlx_put_image_to_window(game.vars.mlx, game.vars.win,
-                            game.player.img, 0, 0);
+    game.vars.win = mlx_new_window(game.vars.mlx,
+                                   game.vars.win_width,
+                                   game.vars.win_height,
+                                   "Escape spaceship");
+    if (!game.vars.win)
+    {
+        close_win(&game);
+        return (1);
+    }
+
+    int py, px;
+    find_player(&game.map, &py, &px);
+    game.player.pos_x = px * TILE_SIZE;
+    game.player.pos_y = py * TILE_SIZE;
+
+    render_map(&game);
 
     mlx_hook(game.vars.win, 2, 0, key_hook, &game);
     mlx_hook(game.vars.win, 17, 0, close_win, &game);

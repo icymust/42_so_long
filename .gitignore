@@ -2,3 +2,4 @@ mlx
 so_long
 *.o
 .DS_Store
+leaks.txt

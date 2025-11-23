@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 19:12:12 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:45:05 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int map_load(t_map *map, char *filename)
         return (0);
     }
 
-    // 1. считаем количество строк
     height = 0;
     while ((line = get_next_line(fd))) {
         height++;
@@ -61,14 +60,12 @@ int map_load(t_map *map, char *filename)
         return (0);
     }
 
-    // 2. выделяем память под grid
     map->grid = malloc(sizeof(char *) * (height + 1));
     if (!map->grid) {
         printf("Error: Memory allocation failed\n");
         return (0);
     }
 
-    // 3. читаем строки карты во второй проход
     fd = open(filename, O_RDONLY);
     if (fd < 0) {
         perror("Error: Cannot reopen file");
@@ -91,7 +88,6 @@ int map_load(t_map *map, char *filename)
     map->height = i;
     map->width = ft_strlen(map->grid[0]);
 
-    // 4. проверяем, что все строки одинаковой длины
     i = 1;
     while (i < map->height)
     {
@@ -103,7 +99,6 @@ int map_load(t_map *map, char *filename)
         i++;
     }
     
-    // 5. базовая проверка стен сверху и снизу
     if (grid_check(map) < 0) {
         printf("Grid error\n");
         free_map(map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 19:11:10 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/23 17:16:14 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_game {
     t_vars vars;
     t_player player;
     t_map map;
+    void    *img_wall;
+    void    *img_floor;
+    void    *img_exit;
+    void    *img_key;
 } t_game;
 
 int close_win(t_game *game);
@@ -61,5 +65,8 @@ int map_load(t_map *map, char *filename);
 int grid_check(t_map *map);
 int key_hook(int keycode, t_game *game);
 int check_path(t_map *map);
+int find_player(t_map *map, int *start_y, int *start_x);
+int init_textures(t_game *game);
+void render_map(t_game *game);
 
 #endif

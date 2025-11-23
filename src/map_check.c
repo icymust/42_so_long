@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:17:14 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/20 18:36:52 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:45:29 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int grid_check(t_map *map)
     map->exit = 0;
     map->collectiable = 0;
 
-    // 1. проверка верхней и нижней строки на стены
     y = 0;
     x = 0;
     while (x < map->width)
@@ -31,15 +30,10 @@ int grid_check(t_map *map)
             return (-1);
         x++;
     }
-
-    // 2. обходим всю карту:
-    //    - считаем P/E/C
-    //    - проверяем боковые стены
-    //    - проверяем допустимые символы
+    
     y = 0;
     while (y < map->height)
     {
-        // стены слева и справа
         if (map->grid[y][0] != '1'
             || map->grid[y][map->width - 1] != '1')
         {
@@ -67,7 +61,6 @@ int grid_check(t_map *map)
         y++;
     }
 
-    // 3. итоговая проверка количества P/E/C
     if (map->spawn != 1)
         return (-1);
     if (map->exit != 1)
@@ -79,7 +72,6 @@ int grid_check(t_map *map)
     return (0);
 }
 
-//Копия карты из грид
 static char **dup_grid(t_map *map)
 {
     char **copy;
@@ -170,7 +162,7 @@ static void flood_exit(char **grid, int y, int x,
 }
 
 
-static int find_player(t_map *map, int *start_y, int *start_x)
+int find_player(t_map *map, int *start_y, int *start_x)
 {
     int y;
     int x;
