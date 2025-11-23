@@ -6,73 +6,86 @@
 /*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 16:58:23 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/23 18:45:16 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/23 22:01:45 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int init_textures(t_game *game)
+static int	load_texture(t_game *game, void **dst, char *path)
 {
-    int w, h;
+	int	w;
+	int	h;
 
-    if (!game || !game->vars.mlx)
-        return (0);
-
-    game->img_wall  = mlx_png_file_to_image(game->vars.mlx, "textures/wall.png",  &w, &h);
-    if (!game->img_wall) { fprintf(stderr, "Failed load: textures/wall.png\n"); return 0; }
-
-    game->img_floor = mlx_png_file_to_image(game->vars.mlx, "textures/floor.png", &w, &h);
-    if (!game->img_floor) { fprintf(stderr, "Failed load: textures/floor.png\n"); return 0; }
-
-    game->img_exit  = mlx_png_file_to_image(game->vars.mlx, "textures/exit.png",  &w, &h);
-    if (!game->img_exit) { fprintf(stderr, "Failed load: textures/exit.png\n"); return 0; }
-
-    game->img_key  = mlx_png_file_to_image(game->vars.mlx, "textures/key.png",  &w, &h);
-    if (!game->img_key) { fprintf(stderr, "Failed load: textures/key.png\n"); return 0; }
-
-    game->player.img = mlx_png_file_to_image(game->vars.mlx, "textures/player.png", &w, &h);
-    if (!game->player.img) { fprintf(stderr, "Failed load: textures/player.png\n"); return 0; }
-
-    return 1;
+	if (!game->vars.mlx)
+		return (0);
+	*dst = mlx_png_file_to_image(game->vars.mlx, path, &w, &h);
+	if (!*dst)
+		return (0);
+	return (1);
 }
 
-void render_map(t_game *game)
+int	init_textures(t_game *game)
 {
-    t_map *map;
-    int x, y;
-    void *img;
-    int px, py;
+	if (!load_texture(game, &game->img_wall, "textures/wall.png"))
+		return (0);
+	if (!load_texture(game, &game->img_floor, "textures/floor.png"))
+		return (0);
+	if (!load_texture(game, &game->img_exit, "textures/exit.png"))
+		return (0);
+	if (!load_texture(game, &game->img_key, "textures/key.png"))
+		return (0);
+	if (!load_texture(game, &game->player.img, "textures/player.png"))
+		return (0);
+	return (1);
+}
 
-    if (!game || !game->vars.mlx || !game->vars.win)
-        return;
-    map = &game->map;
-    y = 0;
-    while (y < map->height)
-    {
-        x = 0;
-        while (x < map->width)
-        {
-            char c = map->grid[y][x];
-            px = x * TILE_SIZE;
-            py = y * TILE_SIZE;
-            img = NULL;
-            if (c == '1')
-                img = game->img_wall;
-            else if (c == '0')
-                img = game->img_floor;
-            else if (c == 'E')
-                img = game->img_exit;
-            else if (c == 'C')
-                img = game->img_key;
-            else if (c == 'P')
-                img = game->player.img;
-            else
-                img = game->img_floor;
-            if (img)
-                mlx_put_image_to_window(game->vars.mlx, game->vars.win, img, px, py);
-            x++;
-        }
-        y++;
-    }
+static void	*choose_img(t_game *game, char c)
+{
+	if (c == '1')
+		return (game->img_wall);
+	if (c == '0')
+		return (game->img_floor);
+	if (c == 'E')
+		return (game->img_exit);
+	if (c == 'C')
+		return (game->img_key);
+	if (c == 'P')
+		return (game->player.img);
+	return (game->img_floor);
+}
+
+static void	draw_cell(t_game *game, int y, int x)
+{
+	void	*img;
+	t_pos	pos;
+	char	c;
+
+	c = game->map.grid[y][x];
+	img = choose_img(game, c);
+	if (!img)
+		return ;
+	pos.x = x * TILE_SIZE;
+	pos.y = y * TILE_SIZE;
+	mlx_put_image_to_window(game->vars.mlx, game->vars.win, img, pos.x, pos.y);
+}
+
+void	render_map(t_game *game)
+{
+	int	y;
+	int	x;
+
+	if (!game || !game->vars.mlx || !game->vars.win)
+		return ;
+	y = 0;
+	while (y < game->map.height)
+	{
+		x = 0;
+		while (x < game->map.width)
+		{
+			draw_cell(game, y, x);
+			x++;
+		}
+		y++;
+	}
 }

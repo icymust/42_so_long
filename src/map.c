@@ -6,111 +6,95 @@
 /*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/23 18:45:05 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/23 21:13:41 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-    int i;
+	int	i;
 
-    if (!map->grid)
-        return;
-    i = 0;
-    while (i < map->height)
-    {
-        if (map->grid[i])
-            free(map->grid[i]);
-        i++;
-    }
-    free(map->grid);
-    map->grid = NULL;
-    map->height = 0;
-    map->width = 0;
+	if (!map || !map->grid)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->grid[i])
+			free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+	map->grid = NULL;
+	map->height = 0;
+	map->width = 0;
 }
 
-int map_load(t_map *map, char *filename)
+static int	validate_dimensions(t_map *map)
 {
-    int fd;
-    char *line;
-    int i;
-    int height;
+	int	i;
 
-    map->grid = NULL;
-    map->width = 0;
-    map->height = 0;
+	if (map->height < 3 || map->width < 3)
+	{
+		printf("Error: Map is too small\n");
+		return (0);
+	}
+	i = 1;
+	while (i < map->height)
+	{
+		if ((int)ft_strlen(map->grid[i]) != map->width)
+		{
+			printf("Error: Map lines are not of equal length\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
-    fd = open(filename, O_RDONLY);
-    if (fd < 0) {
-        perror("Error: Cannot reopen file");
-        return (0);
-    }
+static int	alloc_and_read(t_map *map, const char *filename)
+{
+	int	height;
 
-    height = 0;
-    while ((line = get_next_line(fd))) {
-        height++;
-        free(line);
-    }
-    close(fd);
+	height = count_lines(filename);
+	if (height < 3)
+	{
+		printf("Error: Map is too small\n");
+		return (0);
+	}
+	map->grid = malloc(sizeof(char *) * (height + 1));
+	if (!map->grid)
+	{
+		perror("Error: malloc");
+		return (0);
+	}
+	if (!read_grid(map, filename, height))
+		return (0);
+	map->height = height;
+	map->width = ft_strlen(map->grid[0]);
+	return (1);
+}
 
-    if (height < 3) {
-        printf("Error: Map is too small\n");
-        return (0);
-    }
-
-    map->grid = malloc(sizeof(char *) * (height + 1));
-    if (!map->grid) {
-        printf("Error: Memory allocation failed\n");
-        return (0);
-    }
-
-    fd = open(filename, O_RDONLY);
-    if (fd < 0) {
-        perror("Error: Cannot reopen file");
-        free(map->grid);
-        map->grid = NULL;
-        return (0);
-    }
-
-    i = 0;
-    while ((line = get_next_line(fd))) {
-        int len = ft_strlen(line);
-        if (len > 0 && line[len - 1] == '\n')
-            line[len - 1] = '\0';
-        map->grid[i] = line;
-        i++;
-    }
-    map->grid[i] = NULL;
-    close(fd);
-
-    map->height = i;
-    map->width = ft_strlen(map->grid[0]);
-
-    i = 1;
-    while (i < map->height)
-    {
-        if ((int)ft_strlen(map->grid[i]) != map->width) {
-            printf("Error: Map lines are not of equal length\n");
-            free_map(map);
-            return (0);
-        }
-        i++;
-    }
-    
-    if (grid_check(map) < 0) {
-        printf("Grid error\n");
-        free_map(map);
-        return (0);
-    }
-
-    if (check_path(map) < 0)
-    {
-        printf("Path error\n");
-        free_map(map);
-        return (0);
-    }
-
-    return (1);
+int	map_load(t_map *map, char *filename)
+{
+	if (!map || !filename)
+		return (0);
+	map->grid = NULL;
+	map->width = 0;
+	map->height = 0;
+	if (!alloc_and_read(map, filename))
+		return (0);
+	if (!validate_dimensions(map))
+	{
+		free_map(map);
+		return (0);
+	}
+	if (grid_check(map) < 0 || check_path(map) < 0)
+	{
+		printf("Map validation error\n");
+		free_map(map);
+		return (0);
+	}
+	return (1);
 }

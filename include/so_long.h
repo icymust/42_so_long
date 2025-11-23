@@ -6,7 +6,7 @@
 /*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/23 17:16:14 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/23 22:32:28 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct s_vars {
 } t_vars;
 
 typedef struct s_map {
-    char    **grid;   // массив строк, каждая строка = одна строка карты
-    int     width;    // длина строки
-    int     height;   // количество строк
+    char    **grid;
+    int     width;
+    int     height;
     int     collectiable;
     int     spawn;
     int     exit;
@@ -59,14 +59,33 @@ typedef struct s_game {
     void    *img_key;
 } t_game;
 
+typedef struct s_pos
+{
+    int	x;
+    int	y;
+}	t_pos;
+
+typedef struct s_flood
+{
+    char	**grid;
+    t_map	*map;
+    int		found_c;
+    int		exit_ok;
+}	t_flood;
+
 int close_win(t_game *game);
 void free_map(t_map *map);
 int map_load(t_map *map, char *filename);
 int grid_check(t_map *map);
 int key_hook(int keycode, t_game *game);
-int check_path(t_map *map);
+char	**dup_grid(t_map *m);
+void	free_grid_copy(char **cp, int h);
+int		check_path(t_map *m);
 int find_player(t_map *map, int *start_y, int *start_x);
 int init_textures(t_game *game);
 void render_map(t_game *game);
+int count_lines(const char *filename);
+int read_grid(t_map *map, const char *filename, int height);
+int	move_in_grid(t_game *game, char move);
 
 #endif
