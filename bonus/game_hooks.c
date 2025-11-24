@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:17:55 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:38:37 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	move_player(t_game *game, char c)
 		else if (c == 'd')
 			game->player.pos_y += TILE_SIZE;
 		game->player.steps++;
-		ft_printf("Moves:%i\n", game->player.steps);
 	}
 	render_map(game);
 	return (0);

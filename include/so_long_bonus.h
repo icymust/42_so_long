@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:24:21 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:36:29 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_game
 	void		*img_floor;
 	void		*img_exit;
 	void		*img_key;
-	void		*img_al;
+	void		*img_alien;
 }				t_game;
 
 typedef struct s_pos

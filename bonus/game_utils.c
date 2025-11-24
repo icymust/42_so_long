@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:22:29 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:12:15 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:36:28 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	null_images(t_game *g)
 	g->img_floor = NULL;
 	g->img_exit = NULL;
 	g->img_key = NULL;
-	g->img_al = NULL;
+	g->img_alien = NULL;
 }
 
 void	destroy_images(t_game *g)
@@ -42,8 +42,8 @@ void	destroy_images(t_game *g)
 		mlx_destroy_image(g->vars.mlx, g->img_exit);
 	if (g->img_key)
 		mlx_destroy_image(g->vars.mlx, g->img_key);
-	if (g->img_al)
-		mlx_destroy_image(g->vars.mlx, g->img_al);
+	if (g->img_alien)
+		mlx_destroy_image(g->vars.mlx, g->img_alien);
 	null_images(g);
 }
 
