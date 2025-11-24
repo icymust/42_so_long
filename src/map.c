@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/23 21:13:41 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/24 11:40:29 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	validate_dimensions(t_map *map)
 
 	if (map->height < 3 || map->width < 3)
 	{
-		printf("Error: Map is too small\n");
+		ft_printf("Error: Map is too small\n");
 		return (0);
 	}
 	i = 1;
@@ -45,7 +45,7 @@ static int	validate_dimensions(t_map *map)
 	{
 		if ((int)ft_strlen(map->grid[i]) != map->width)
 		{
-			printf("Error: Map lines are not of equal length\n");
+			ft_printf("Error: Map lines are not of equal length\n");
 			return (0);
 		}
 		i++;
@@ -60,7 +60,7 @@ static int	alloc_and_read(t_map *map, const char *filename)
 	height = count_lines(filename);
 	if (height < 3)
 	{
-		printf("Error: Map is too small\n");
+		ft_printf("Error: Map is too small\n");
 		return (0);
 	}
 	map->grid = malloc(sizeof(char *) * (height + 1));
@@ -92,7 +92,7 @@ int	map_load(t_map *map, char *filename)
 	}
 	if (grid_check(map) < 0 || check_path(map) < 0)
 	{
-		printf("Map validation error\n");
+		ft_printf("Map validation error\n");
 		free_map(map);
 		return (0);
 	}

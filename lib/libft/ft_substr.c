@@ -1,51 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_utils.c                                      :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 22:33:14 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 11:24:51 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/18 12:33:07 by mmustone          #+#    #+#             */
+/*   Updated: 2025/08/04 10:32:46 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-char	**dup_grid(t_map *m)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	**cp;
-	int		y;
+	char	*dst;
+	size_t	s_size;
 
-	cp = malloc(sizeof(char *) * (m->height + 1));
-	if (!cp)
+	if (!s)
 		return (NULL);
-	y = 0;
-	while (y < m->height)
+	s_size = ft_strlen(s);
+	if (s_size <= start)
 	{
-		cp[y] = ft_strdup(m->grid[y]);
-		if (!cp[y])
-		{
-			while (--y >= 0)
-				free(cp[y]);
-			free(cp);
+		dst = (char *)malloc(sizeof(char) * 1);
+		if (!dst)
 			return (NULL);
-		}
-		y++;
+		dst[0] = '\0';
+		return (dst);
 	}
-	cp[y] = NULL;
-	return (cp);
-}
-
-void	free_grid_copy(char **cp, int h)
-{
-	int	i;
-
-	i = 0;
-	while (i < h)
-	{
-		free(cp[i]);
-		i++;
-	}
-	free(cp);
+	if (len > s_size - start)
+		len = s_size - start;
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (NULL);
+	ft_memcpy(dst, s + start, len);
+	dst[len] = '\0';
+	return (dst);
 }

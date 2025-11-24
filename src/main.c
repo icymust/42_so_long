@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/23 19:51:20 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/24 11:41:19 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int	setup_textures_and_window(t_game *game)
 {
 	if (!init_textures(game))
 		return (0);
-	game->vars.win = mlx_new_window(game->vars.mlx,
-			game->vars.win_width, game->vars.win_height, "Escape spaceship");
+	game->vars.win = mlx_new_window(game->vars.mlx, game->vars.win_width,
+			game->vars.win_height, "Escape spaceship");
 	if (!game->vars.win)
 		return (0);
 	return (1);
@@ -48,18 +48,18 @@ static int	handle_args_and_map(int ac, char **av, t_game *game)
 {
 	if (ac != 2)
 	{
-		printf("Usage: %s <map_file>\n", av[0]);
+		ft_printf("Usage: %s <map_file>\n", av[0]);
 		return (1);
 	}
 	ft_memset(game, 0, sizeof(*game));
 	if (!map_load(&game->map, av[1]))
 	{
-		printf("Failed in map_load\n");
+		ft_printf("Failed in map_load\n");
 		return (1);
 	}
 	game->vars.win_height = game->map.height * TILE_SIZE;
 	game->vars.win_width = game->map.width * TILE_SIZE;
-	printf("Map loaded: %d x %d\n", game->map.width, game->map.height);
+	ft_printf("Map loaded: %d x %d\n", game->map.width, game->map.height);
 	return (0);
 }
 
@@ -72,7 +72,7 @@ int	main(int ac, char **av)
 	if (!setup_mlx(&game))
 	{
 		free_map(&game.map);
-		fprintf(stderr, "Error: Failed to initialize MiniLibX\n");
+		ft_printf("Error: Failed to initialize MiniLibX\n");
 		return (1);
 	}
 	if (!setup_textures_and_window(&game))

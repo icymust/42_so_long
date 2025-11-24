@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 22:36:30 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/23 22:38:03 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/24 11:40:21 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static int	run_collect(t_map *m, int sy, int sx)
 	free_grid_copy(f.grid, m->height);
 	if (f.found_c != m->collectiable)
 	{
-		printf("Error: collectibles unreachable\n");
+		ft_printf("Error: collectibles unreachable\n");
 		return (-1);
 	}
 	return (0);
@@ -83,7 +83,7 @@ static int	run_exit(t_map *m, int sy, int sx)
 	free_grid_copy(f.grid, m->height);
 	if (!f.exit_ok)
 	{
-		printf("Error: exit unreachable\n");
+		ft_printf("Error: exit unreachable\n");
 		return (-1);
 	}
 	return (0);

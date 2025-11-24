@@ -1,51 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_utils.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 22:33:14 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 11:24:51 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/28 11:08:20 by mmustone          #+#    #+#             */
+/*   Updated: 2025/08/05 10:49:46 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-char	**dup_grid(t_map *m)
-{
-	char	**cp;
-	int		y;
-
-	cp = malloc(sizeof(char *) * (m->height + 1));
-	if (!cp)
-		return (NULL);
-	y = 0;
-	while (y < m->height)
-	{
-		cp[y] = ft_strdup(m->grid[y]);
-		if (!cp[y])
-		{
-			while (--y >= 0)
-				free(cp[y]);
-			free(cp);
-			return (NULL);
-		}
-		y++;
-	}
-	cp[y] = NULL;
-	return (cp);
-}
-
-void	free_grid_copy(char **cp, int h)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
-	while (i < h)
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		free(cp[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
-	free(cp);
 }

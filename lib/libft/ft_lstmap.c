@@ -1,51 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_utils.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 22:33:14 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 11:24:51 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/29 10:04:01 by mmustone          #+#    #+#             */
+/*   Updated: 2025/08/05 10:00:24 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-char	**dup_grid(t_map *m)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	**cp;
-	int		y;
+	t_list	*new_list;
+	t_list	*new_elem;
+	void	*new_content;
 
-	cp = malloc(sizeof(char *) * (m->height + 1));
-	if (!cp)
+	if (!f || !del)
 		return (NULL);
-	y = 0;
-	while (y < m->height)
+	new_list = NULL;
+	while (lst)
 	{
-		cp[y] = ft_strdup(m->grid[y]);
-		if (!cp[y])
+		new_content = f(lst->content);
+		new_elem = ft_lstnew(new_content);
+		if (!new_elem)
 		{
-			while (--y >= 0)
-				free(cp[y]);
-			free(cp);
+			del(new_content);
+			ft_lstclear(&new_list, del);
 			return (NULL);
 		}
-		y++;
+		ft_lstadd_back(&new_list, new_elem);
+		lst = lst->next;
 	}
-	cp[y] = NULL;
-	return (cp);
-}
-
-void	free_grid_copy(char **cp, int h)
-{
-	int	i;
-
-	i = 0;
-	while (i < h)
-	{
-		free(cp[i]);
-		i++;
-	}
-	free(cp);
+	return (new_list);
 }

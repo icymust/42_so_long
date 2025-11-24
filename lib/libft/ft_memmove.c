@@ -1,51 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_utils.c                                      :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 22:33:14 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 11:24:51 by mmustone         ###   ########.fr       */
+/*   Created: 2025/07/16 08:08:41 by mmustone          #+#    #+#             */
+/*   Updated: 2025/08/04 10:31:23 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-char	**dup_grid(t_map *m)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	**cp;
-	int		y;
+	char		*d;
+	const char	*s;
 
-	cp = malloc(sizeof(char *) * (m->height + 1));
-	if (!cp)
+	if (!dst && !src)
 		return (NULL);
-	y = 0;
-	while (y < m->height)
+	d = dst;
+	s = src;
+	if (d < s)
 	{
-		cp[y] = ft_strdup(m->grid[y]);
-		if (!cp[y])
-		{
-			while (--y >= 0)
-				free(cp[y]);
-			free(cp);
-			return (NULL);
-		}
-		y++;
+		while (len--)
+			*d++ = *s++;
 	}
-	cp[y] = NULL;
-	return (cp);
-}
-
-void	free_grid_copy(char **cp, int h)
-{
-	int	i;
-
-	i = 0;
-	while (i < h)
+	else
 	{
-		free(cp[i]);
-		i++;
+		d += len;
+		s += len;
+		while (len--)
+			*(--d) = *(--s);
 	}
-	free(cp);
+	return (dst);
 }

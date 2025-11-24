@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/23 21:54:46 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/11/24 11:42:57 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	move_player(t_game *game, char c)
 		else if (c == 'd')
 			game->player.pos_y += TILE_SIZE;
 		game->player.steps++;
+		ft_printf("Moves:%i\n", game->player.steps);
 	}
 	render_map(game);
 	return (0);
@@ -101,6 +102,5 @@ int	key_hook(int keycode, t_game *game)
 		move_player(game, 'u');
 	else if (keycode == 1)
 		move_player(game, 'd');
-	printf("Moves:%i\n", game->player.steps);
 	return (0);
 }
