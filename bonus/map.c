@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:21:42 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 14:47:13 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	free_map(t_map *map)
 {
@@ -66,7 +66,7 @@ int	alloc_and_read(t_map *map, const char *filename)
 	map->grid = malloc(sizeof(char *) * (height + 1));
 	if (!map->grid)
 	{
-		ft_printf("Error\nMalloc\n");
+		perror("Error\nMalloc\n");
 		return (0);
 	}
 	if (!read_grid(map, filename, height))

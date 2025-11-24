@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 20:28:54 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 14:11:22 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 14:47:12 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 int	count_lines(const char *filename)
 {

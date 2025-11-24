@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 14:11:54 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:17:55 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 int	compute_target(t_map *map, t_pos cur, char move, t_pos *tgt)
 {
@@ -45,6 +45,11 @@ int	apply_move(t_game *game, t_pos cur, t_pos tgt)
 			close_win(game);
 		return (0);
 	}
+	if (cell == 'A')
+	{
+		close_win(game);
+		return (0);
+	}
 	if (cell == 'C')
 		map->collectiable--;
 	map->grid[cur.y][cur.x] = '0';
@@ -62,6 +67,7 @@ int	move_in_grid(t_game *game, char move)
 	map = &game->map;
 	find_player(map, &cur.y, &cur.x);
 	ok = compute_target(map, cur, move, &tgt);
+	game->player.direct = move;
 	if (!ok)
 		return (0);
 	return (apply_move(game, cur, tgt));

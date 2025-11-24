@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:17:14 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 14:12:13 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:14:32 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 int	check_border(t_map *m)
 {
@@ -55,7 +55,7 @@ int	count_elems(t_map *m)
 				m->exit++;
 			else if (c == 'C')
 				m->collectiable++;
-			else if (c != '0' && c != '1')
+			else if (c != '0' && c != '1' && c != 'A')
 				return (-1);
 		}
 	}

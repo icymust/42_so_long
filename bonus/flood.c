@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 22:36:30 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 14:10:35 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:13:24 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 void	flood_collect(t_flood *f, int y, int x)
 {
@@ -19,7 +19,7 @@ void	flood_collect(t_flood *f, int y, int x)
 	if (y < 0 || y >= f->map->height || x < 0 || x >= f->map->width)
 		return ;
 	c = f->grid[y][x];
-	if (c == '1' || c == 'E' || c == 'V')
+	if (c == '1' || c == 'E' || c == 'V' || c == 'A')
 		return ;
 	if (c == 'C')
 		f->found_c++;
@@ -37,7 +37,7 @@ void	flood_exit(t_flood *f, int y, int x)
 	if (y < 0 || y >= f->map->height || x < 0 || x >= f->map->width)
 		return ;
 	c = f->grid[y][x];
-	if (c == '1' || c == 'V')
+	if (c == '1' || c == 'V' || c == 'A')
 		return ;
 	if (c == 'E')
 	{

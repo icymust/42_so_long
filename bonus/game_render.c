@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 16:58:23 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 14:11:17 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:15:20 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 int	load_texture(t_game *game, void **dst, char *path)
 {
@@ -37,6 +37,12 @@ int	init_textures(t_game *game)
 		return (0);
 	if (!load_texture(game, &game->player.img, "textures/player.png"))
 		return (0);
+	if (!load_texture(game, &game->player.imgl, "textures/playerl.png"))
+		return (0);
+	if (!load_texture(game, &game->player.imgu, "textures/playeru.png"))
+		return (0);
+	if (!load_texture(game, &game->img_al, "textures/alien.png"))
+		return (0);
 	return (1);
 }
 
@@ -50,8 +56,17 @@ void	*choose_img(t_game *game, char c)
 		return (game->img_exit);
 	if (c == 'C')
 		return (game->img_key);
+	if (c == 'A')
+		return (game->img_al);
 	if (c == 'P')
-		return (game->player.img);
+	{
+		if (game->player.direct == 'u')
+			return (game->player.imgu);
+		else if (game->player.direct == 'l')
+			return (game->player.imgl);
+		else
+			return (game->player.img);
+	}
 	return (game->img_floor);
 }
 
@@ -72,10 +87,14 @@ void	draw_cell(t_game *game, int y, int x)
 
 void	render_map(t_game *game)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
+	char	*str;
 
 	if (!game || !game->vars.mlx || !game->vars.win)
+		return ;
+	str = ft_itoa(game->player.steps);
+	if (!str)
 		return ;
 	y = 0;
 	while (y < game->map.height)
@@ -88,4 +107,7 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
+	mlx_string_put(game->vars.mlx, game->vars.win, 0, game->vars.win_height
+		- 10, 0xFFFFFF, str);
+	free(str);
 }

@@ -6,11 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 14:11:21 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/24 15:41:20 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
 int	setup_mlx(t_game *game)
 {
@@ -52,9 +52,10 @@ int	handle_args_and_map(int ac, char **av, t_game *game)
 		return (1);
 	}
 	ft_memset(game, 0, sizeof(*game));
+	game->player.direct = 'r';
 	if (!map_load(&game->map, av[1]))
 		return (1);
-	game->vars.win_height = game->map.height * TILE_SIZE;
+	game->vars.win_height = game->map.height * TILE_SIZE + TILE_SIZE;
 	game->vars.win_width = game->map.width * TILE_SIZE;
 	return (0);
 }
