@@ -7,7 +7,7 @@ SRCS = src/main.c src/map.c src/map_check.c src/game_hooks.c src/game_utils.c \
 src/game_render.c src/map_utils.c src/flood.c src/flood_utils.c
 
 BONUS = bonus/main.c bonus/map.c bonus/map_check.c bonus/game_hooks.c bonus/game_utils.c \
-bonus/game_render.c bonus/map_utils.c bonus/flood.c bonus/flood_utils.c
+bonus/game_render.c bonus/map_utils.c bonus/flood.c bonus/flood_utils.c bonus/alien_move.c
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:36:29 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:56:33 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/mlx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 // delete
 # include <stdio.h>
@@ -87,11 +88,13 @@ int				key_hook(int keycode, t_game *game);
 char			**dup_grid(t_map *m);
 void			free_grid_copy(char **cp, int h);
 int				check_path(t_map *m);
-int				find_player(t_map *map, int *start_y, int *start_x);
+int				find_player(t_map *map, int *start_y, int *start_x, char c);
 int				init_textures(t_game *game);
 void			render_map(t_game *game);
 int				count_lines(const char *filename);
 int				read_grid(t_map *map, const char *filename, int height);
 int				move_in_grid(t_game *game, char move);
+void			alien_update(t_game *game);
+int				loop_tick(void *param);
 
 #endif

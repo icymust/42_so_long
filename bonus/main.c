@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 15:41:20 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:09:51 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void	place_player_and_hooks(t_game *game)
 	int	py;
 	int	px;
 
-	find_player(&game->map, &py, &px);
+	find_player(&game->map, &py, &px, 'P');
 	game->player.pos_x = px * TILE_SIZE;
 	game->player.pos_y = py * TILE_SIZE;
 	render_map(game);
 	mlx_hook(game->vars.win, 2, 0, key_hook, game);
 	mlx_hook(game->vars.win, 17, 0, close_win, game);
+	mlx_loop_hook(game->vars.mlx, loop_tick, game);
 }
 
 int	handle_args_and_map(int ac, char **av, t_game *game)

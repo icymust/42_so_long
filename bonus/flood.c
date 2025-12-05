@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 22:36:30 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 16:13:24 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:09:18 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	check_path(t_map *m)
 	int	sy;
 	int	sx;
 
-	if (find_player(m, &sy, &sx) < 0)
+	if (find_player(m, &sy, &sx, 'P') < 0)
 		return (-1);
 	if (run_collect(m, sy, sx) < 0)
 		return (-1);

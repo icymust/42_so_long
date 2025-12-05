@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:17:14 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:14:32 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:11:27 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	grid_check(t_map *m)
 	return (0);
 }
 
-int	find_player(t_map *m, int *sy, int *sx)
+int	find_player(t_map *m, int *sy, int *sx, char c)
 {
 	t_pos	pos;
 
@@ -85,7 +85,7 @@ int	find_player(t_map *m, int *sy, int *sx)
 		pos.x = 0;
 		while (pos.x < m->width)
 		{
-			if (m->grid[pos.y][pos.x] == 'P')
+			if (m->grid[pos.y][pos.x] == c)
 			{
 				*sy = pos.y;
 				*sx = pos.x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:22:29 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:36:28 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:59:10 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,35 @@ int	close_win(t_game *game)
 	}
 	free_map(&game->map);
 	exit(0);
+	return (0);
+}
+
+static long	now_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000L + tv.tv_usec / 1000L);
+}
+
+int	loop_tick(void *param)
+{
+	t_game		*game;
+	static long	last = 0;
+	long		t;
+	const long	delay_ms = 450;
+
+	game = (t_game *)param;
+	if (!game || !game->vars.mlx)
+		return (0);
+	t = now_ms();
+	if (last == 0)
+		last = t;
+	if (t - last >= delay_ms)
+	{
+		alien_update(game);
+		render_map(game);
+		last = t;
+	}
 	return (0);
 }

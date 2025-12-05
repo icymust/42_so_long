@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:38:37 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/05 13:09:36 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	move_in_grid(t_game *game, char move)
 	int		ok;
 
 	map = &game->map;
-	find_player(map, &cur.y, &cur.x);
+	find_player(map, &cur.y, &cur.x, 'P');
 	ok = compute_target(map, cur, move, &tgt);
 	game->player.direct = move;
 	if (!ok)
