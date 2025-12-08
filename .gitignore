@@ -1,5 +1,6 @@
 mlx
 so_long
+so_long_bonus
 *.o
 .DS_Store
 leaks.txt
