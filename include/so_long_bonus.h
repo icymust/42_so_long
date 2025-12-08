@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/05 13:56:33 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/08 16:00:14 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <sys/time.h>
-
-// delete
-# include <stdio.h>
-# include <string.h>
 
 # define TILE_SIZE 64
 
@@ -64,6 +60,7 @@ typedef struct s_game
 	void		*img_exit;
 	void		*img_key;
 	void		*img_alien;
+	int			end_game;
 }				t_game;
 
 typedef struct s_pos
@@ -96,5 +93,7 @@ int				read_grid(t_map *map, const char *filename, int height);
 int				move_in_grid(t_game *game, char move);
 void			alien_update(t_game *game);
 int				loop_tick(void *param);
+void			render_map_end(t_game *game);
+void			draw_cell(t_game *game, int y, int x);
 
 #endif

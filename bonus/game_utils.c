@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:22:29 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/05 13:59:10 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/08 13:54:09 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ int	loop_tick(void *param)
 	if (t - last >= delay_ms)
 	{
 		alien_update(game);
-		render_map(game);
+		if (game->end_game == 0)
+			render_map(game);
+		else
+			render_map_end(game);
 		last = t;
 	}
 	return (0);

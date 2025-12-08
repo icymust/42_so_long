@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 16:58:23 by martinmust        #+#    #+#             */
-/*   Updated: 2025/11/24 16:43:45 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/08 15:43:05 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_textures(t_game *game)
 		return (0);
 	if (!load_texture(game, &game->player.imgu, "textures/playeru.png"))
 		return (0);
-	if (!load_texture(game, &game->img_alien, "textures/alien.png"))
+	if (!load_texture(game, &game->img_alien, "textures/alien1.png"))
 		return (0);
 	return (1);
 }

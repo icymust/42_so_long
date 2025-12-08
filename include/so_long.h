@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/24 16:24:26 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:00:20 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include "../lib/mlx/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
-
-// delete
-# include <stdio.h>
-# include <string.h>
 
 # define TILE_SIZE 64
 

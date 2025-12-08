@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_hooks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/05 13:09:36 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/08 14:57:59 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ int	apply_move(t_game *game, t_pos cur, t_pos tgt)
 	if (cell == 'E')
 	{
 		if (map->collectiable == 0)
-			close_win(game);
-		return (0);
+			game->end_game = 1;
+		else
+			return (0);
 	}
 	if (cell == 'A')
 	{
-		close_win(game);
+		game->end_game = 2;
 		return (0);
 	}
 	if (cell == 'C')
@@ -99,6 +100,8 @@ int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == 53)
 		close_win(game);
+	if (game->end_game == 1 || game->end_game == 2)
+		return (0);
 	else if (keycode == 2)
 		move_player(game, 'r');
 	else if (keycode == 0)

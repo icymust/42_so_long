@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alien_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:49:33 by martinmust        #+#    #+#             */
-/*   Updated: 2025/12/05 14:19:00 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/08 14:58:10 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ static void	alien_step(t_game *game, int ay, int ax, t_pos *d)
 		d->y = -d->y;
 		return ;
 	}
-	if (c == 'P'){
-        close_win(game);
+	if (c == 'P')
+	{
+		game->end_game = 2;
 		return ;
-    }
+	}
 	m->grid[ay][ax] = '0';
 	m->grid[ny][nx] = 'A';
 }
