@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/08 14:57:59 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:27:36 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	apply_move(t_game *game, t_pos cur, t_pos tgt)
 		return (0);
 	if (cell == 'E')
 	{
-		if (map->collectiable == 0)
+		if (map->collectiable == 0 && game->end_game == 0)
 			game->end_game = 1;
 		else
 			return (0);
 	}
-	if (cell == 'A')
+	if (cell == 'A' && game->end_game == 0)
 	{
 		game->end_game = 2;
 		return (0);

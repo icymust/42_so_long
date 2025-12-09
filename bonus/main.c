@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:24:35 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/05 13:09:51 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/09 15:00:03 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ int	handle_args_and_map(int ac, char **av, t_game *game)
 	if (ac != 2)
 	{
 		ft_printf("Error\nUsage: %s <map_file>\n", av[0]);
-		return (1);
+		return (0);
 	}
 	ft_memset(game, 0, sizeof(*game));
 	game->player.direct = 'r';
 	if (!map_load(&game->map, av[1]))
-		return (1);
+		return (0);
 	game->vars.win_height = game->map.height * TILE_SIZE + TILE_SIZE;
 	game->vars.win_width = game->map.width * TILE_SIZE;
-	return (0);
+	return (1);
 }
 
 int	main(int ac, char **av)
 {
 	t_game	game;
 
-	if (handle_args_and_map(ac, av, &game))
+	if (!handle_args_and_map(ac, av, &game))
 		return (1);
 	if (!setup_mlx(&game))
 	{
@@ -75,6 +75,7 @@ int	main(int ac, char **av)
 	}
 	if (!setup_textures_and_window(&game))
 	{
+		ft_printf("Error\nSetup Textures\n");
 		close_win(&game);
 		return (1);
 	}

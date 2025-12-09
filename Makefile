@@ -8,7 +8,7 @@ src/game_render.c src/map_utils.c src/flood.c src/flood_utils.c
 
 BONUS = bonus/main.c bonus/map.c bonus/map_check.c bonus/game_hooks.c bonus/game_utils.c \
 bonus/game_render.c bonus/map_utils.c bonus/flood.c bonus/flood_utils.c bonus/alien_move.c \
-bonus/game_render_end.c
+bonus/game_render_end.c bonus/alien_move_utils.c 
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/08 16:00:14 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:15:21 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,31 @@ typedef struct player
 {
 	int			pos_x;
 	int			pos_y;
-	void		*img;
-	void		*imgl;
+	void		*img[2];
+	void		*imgl[2];
 	void		*imgu;
 	int			steps;
 	char		direct;
 }				t_player;
+
+typedef struct s_enemy
+{
+	int			pos_x;
+	int			pos_y;
+	void		*frames[2];
+	int			current_frame;
+}				t_enemy;
 
 typedef struct s_game
 {
 	t_vars		vars;
 	t_player	player;
 	t_map		map;
+	t_enemy		enemy;
 	void		*img_wall;
 	void		*img_floor;
 	void		*img_exit;
-	void		*img_key;
-	void		*img_alien;
+	void		*img_key[2];
 	int			end_game;
 }				t_game;
 
@@ -95,5 +103,6 @@ void			alien_update(t_game *game);
 int				loop_tick(void *param);
 void			render_map_end(t_game *game);
 void			draw_cell(t_game *game, int y, int x);
+int				check_alien_move(t_map *m, int ny, int nx, t_pos *d);
 
 #endif

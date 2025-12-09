@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:22:29 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/08 13:54:09 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:51:31 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 void	null_images(t_game *g)
 {
-	g->player.img = NULL;
-	g->player.imgl = NULL;
+	g->player.img[0] = NULL;
+	g->player.img[1] = NULL;
+	g->player.imgl[0] = NULL;
+	g->player.imgl[1] = NULL;
 	g->player.imgu = NULL;
 	g->img_wall = NULL;
 	g->img_floor = NULL;
 	g->img_exit = NULL;
-	g->img_key = NULL;
-	g->img_alien = NULL;
+	g->img_key[0] = NULL;
+	g->img_key[1] = NULL;
+	g->enemy.frames[0] = NULL;
+	g->enemy.frames[1] = NULL;
 }
 
 void	destroy_images(t_game *g)
 {
 	if (!g || !g->vars.mlx)
 		return ;
-	if (g->player.img)
-		mlx_destroy_image(g->vars.mlx, g->player.img);
-	if (g->player.imgl)
-		mlx_destroy_image(g->vars.mlx, g->player.imgl);
-	if (g->player.imgu)
-		mlx_destroy_image(g->vars.mlx, g->player.imgu);
-	if (g->img_wall)
-		mlx_destroy_image(g->vars.mlx, g->img_wall);
-	if (g->img_floor)
-		mlx_destroy_image(g->vars.mlx, g->img_floor);
-	if (g->img_exit)
-		mlx_destroy_image(g->vars.mlx, g->img_exit);
-	if (g->img_key)
-		mlx_destroy_image(g->vars.mlx, g->img_key);
-	if (g->img_alien)
-		mlx_destroy_image(g->vars.mlx, g->img_alien);
+	mlx_destroy_image(g->vars.mlx, g->player.img[0]);
+	mlx_destroy_image(g->vars.mlx, g->player.img[1]);
+	mlx_destroy_image(g->vars.mlx, g->player.imgl[0]);
+	mlx_destroy_image(g->vars.mlx, g->player.imgl[1]);
+	mlx_destroy_image(g->vars.mlx, g->player.imgu);
+	mlx_destroy_image(g->vars.mlx, g->img_wall);
+	mlx_destroy_image(g->vars.mlx, g->img_floor);
+	mlx_destroy_image(g->vars.mlx, g->img_exit);
+	mlx_destroy_image(g->vars.mlx, g->img_key[0]);
+	mlx_destroy_image(g->vars.mlx, g->img_key[1]);
+	mlx_destroy_image(g->vars.mlx, g->enemy.frames[0]);
+	mlx_destroy_image(g->vars.mlx, g->enemy.frames[1]);
 	null_images(g);
 }
 

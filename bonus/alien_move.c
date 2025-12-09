@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:49:33 by martinmust        #+#    #+#             */
-/*   Updated: 2025/12/08 14:58:10 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:28:30 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,13 @@ static void	alien_step(t_game *game, int ay, int ax, t_pos *d)
 	t_map	*m;
 	int		ny;
 	int		nx;
-	char	c;
 
 	m = &game->map;
 	ny = ay + d->y;
 	nx = ax + d->x;
-	if (ny < 0 || ny >= m->height || nx < 0 || nx >= m->width)
-	{
-		d->x = -d->x;
-		d->y = -d->y;
+	if (!check_alien_move(m, ny, nx, d))
 		return ;
-	}
-	c = m->grid[ny][nx];
-	if (c == '1' || c == 'E' || c == 'C')
-	{
-		d->x = -d->x;
-		d->y = -d->y;
-		return ;
-	}
-	if (c == 'P')
+	if (m->grid[ny][nx] == 'P' && game->end_game == 0)
 	{
 		game->end_game = 2;
 		return ;
@@ -98,4 +86,7 @@ void	alien_update(t_game *game)
 	if (dir.x == 0 && dir.y == 0)
 		return ;
 	alien_step(game, ay, ax, &dir);
+	game->enemy.current_frame++;
+	if (game->enemy.current_frame >= 2)
+		game->enemy.current_frame = 0;
 }

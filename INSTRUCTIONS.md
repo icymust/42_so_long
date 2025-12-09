@@ -50,7 +50,8 @@ relink.
 - o $(NAME): Указывает имя выходного файла (в данном случае so_long).
 
 ## Start programm
-- download mlx OpenGL
+- download mlx OpenGL -> lib/
 - make mlx
-- make so_long
+- make libft
+- make so_long/bonus
 - ./so_long <map.ber>

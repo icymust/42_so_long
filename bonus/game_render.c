@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 16:58:23 by martinmust        #+#    #+#             */
-/*   Updated: 2025/12/08 15:43:05 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 14:49:37 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,23 @@ int	init_textures(t_game *game)
 		return (0);
 	if (!load_texture(game, &game->img_exit, "textures/exit.png"))
 		return (0);
-	if (!load_texture(game, &game->img_key, "textures/key.png"))
+	if (!load_texture(game, &game->img_key[0], "textures/key.png"))
 		return (0);
-	if (!load_texture(game, &game->player.img, "textures/player.png"))
+	if (!load_texture(game, &game->img_key[1], "textures/key2.png"))
 		return (0);
-	if (!load_texture(game, &game->player.imgl, "textures/playerl.png"))
+	if (!load_texture(game, &game->player.img[0], "textures/player1.png"))
+		return (0);
+	if (!load_texture(game, &game->player.img[1], "textures/player2.png"))
+		return (0);
+	if (!load_texture(game, &game->player.imgl[0], "textures/playerl1.png"))
+		return (0);
+	if (!load_texture(game, &game->player.imgl[1], "textures/playerl2.png"))
 		return (0);
 	if (!load_texture(game, &game->player.imgu, "textures/playeru.png"))
 		return (0);
-	if (!load_texture(game, &game->img_alien, "textures/alien1.png"))
+	if (!load_texture(game, &game->enemy.frames[0], "textures/alien1.png"))
+		return (0);
+	if (!load_texture(game, &game->enemy.frames[1], "textures/alien2.png"))
 		return (0);
 	return (1);
 }
@@ -55,17 +63,17 @@ void	*choose_img(t_game *game, char c)
 	if (c == 'E')
 		return (game->img_exit);
 	if (c == 'C')
-		return (game->img_key);
+		return (game->img_key[game->enemy.current_frame]);
 	if (c == 'A')
-		return (game->img_alien);
+		return (game->enemy.frames[game->enemy.current_frame]);
 	if (c == 'P')
 	{
 		if (game->player.direct == 'u')
 			return (game->player.imgu);
 		else if (game->player.direct == 'l')
-			return (game->player.imgl);
+			return (game->player.imgl[game->enemy.current_frame]);
 		else
-			return (game->player.img);
+			return (game->player.img[game->enemy.current_frame]);
 	}
 	return (game->img_floor);
 }
