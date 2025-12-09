@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 12:32:41 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/08 17:23:20 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:35:27 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,13 @@ void	render_map_end(t_game *game)
 	if (!str)
 		return ;
 	mlx_clear_window(game->vars.mlx, game->vars.win);
-	if (game->end_game == 1){
-		mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2,
-			game->vars.win_height / 2 - 10, 0xFFFFFF, "Congratulations !!!");
+	if (game->end_game == 1)
 		mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2,
 			game->vars.win_height / 2, 0xFFFFFF, "You escaped the spaceship");
-		}
-	else{
+	else
 		mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2,
-			game->vars.win_height / 2 - 10, 0xFFFFFF, "You lost :(");
-		mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2,
-			game->vars.win_height / 2, 0xFFFFFF, "Alien reached you");
-		}
+			game->vars.win_height / 2, 0xFFFFFF,
+			"You lost, Alien reached you");
 	mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2,
 		game->vars.win_height / 2 + 10, 0xFFFFFF, "Moves");
 	mlx_string_put(game->vars.mlx, game->vars.win, game->vars.win_width / 2
