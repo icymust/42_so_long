@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:15:25 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/09 15:27:36 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/10 13:00:57 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	apply_move(t_game *game, t_pos cur, t_pos tgt)
 	if (cell == 'A' && game->end_game == 0)
 	{
 		game->end_game = 2;
+		game->player.steps++;
 		return (0);
 	}
 	if (cell == 'C')

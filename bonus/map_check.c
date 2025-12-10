@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:17:14 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/05 13:11:27 by martinmust       ###   ########.fr       */
+/*   Updated: 2025/12/10 15:29:53 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int	count_elems(t_map *m)
 	int		x;
 	char	c;
 
-	m->spawn = 0;
-	m->exit = 0;
-	m->collectiable = 0;
 	y = -1;
 	while (++y < m->height)
 	{
@@ -51,11 +48,13 @@ int	count_elems(t_map *m)
 			c = m->grid[y][x];
 			if (c == 'P')
 				m->spawn++;
+			else if (c == 'A')
+				m->alien++;
 			else if (c == 'E')
 				m->exit++;
 			else if (c == 'C')
 				m->collectiable++;
-			else if (c != '0' && c != '1' && c != 'A')
+			else if (c != '0' && c != '1')
 				return (-1);
 		}
 	}
@@ -68,7 +67,7 @@ int	grid_check(t_map *m)
 		return (-1);
 	if (count_elems(m) < 0)
 		return (-1);
-	if (m->spawn != 1 || m->exit != 1 || m->collectiable < 1)
+	if (m->spawn != 1 || m->exit != 1 || m->collectiable < 1 || m->alien != 1)
 		return (-1);
 	if (m->height == m->width)
 		return (-1);

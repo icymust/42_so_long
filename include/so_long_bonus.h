@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:42:11 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/09 15:15:21 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/10 14:58:02 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			collectiable;
+	int			alien;
 	int			spawn;
 	int			exit;
 }				t_map;
