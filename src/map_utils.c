@@ -6,11 +6,23 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:18:10 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/16 16:01:36 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:03:29 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int	map_name_check(const char *filename)
+{
+	int	length;
+
+	length = ft_strlen(filename);
+	if (length < 4)
+		return (0);
+	if (ft_strncmp(&filename[length - 4], ".ber", 4) == 0)
+		return (1);
+	return (0);
+}
 
 int	count_lines(const char *filename)
 {
