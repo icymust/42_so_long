@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/12 19:23:31 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:01:04 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ int	alloc_and_read(t_map *map, const char *filename)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-	if (!read_grid(map, filename, height))
+	if (!read_grid(map, filename, height)){
+		ft_printf("Error\nMap problem\n");
 		return (0);
+	}
 	map->height = height;
 	map->width = ft_strlen(map->grid[0]);
 	return (1);

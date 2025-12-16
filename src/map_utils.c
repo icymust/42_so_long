@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:18:10 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/12 19:18:11 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:01:36 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	read_grid(t_map *map, const char *filename, int height)
 	int		i;
 	char	*line;
 
+	if (!map_name_check(filename))
+		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);

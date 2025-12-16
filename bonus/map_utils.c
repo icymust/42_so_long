@@ -6,11 +6,23 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 19:17:36 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/12 19:17:37 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:01:29 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
+
+int	map_name_check(const char *filename)
+{
+	int	length;
+
+	length = ft_strlen(filename);
+	if (length < 4)
+		return (0);
+	if (ft_strncmp(&filename[length - 4], ".ber", 4) == 0)
+		return (1);
+	return (0);
+}
 
 int	count_lines(const char *filename)
 {
@@ -50,6 +62,8 @@ int	read_grid(t_map *map, const char *filename, int height)
 	int		i;
 	char	*line;
 
+	if (!map_name_check(filename))
+		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
