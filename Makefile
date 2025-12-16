@@ -13,26 +13,37 @@ bonus/game_render_end.c bonus/alien_move_utils.c
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
 LIBFT = lib/libft/libft.a
+MLX_LIB = lib/mlx/libmlx.a
 MLX = -Llib/mlx -lmlx -lz -framework OpenGL -framework AppKit
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+all: $(NAME)
+
+$(LIBFT):
+	make -C lib/libft
+
+$(MLX_LIB):
+	make -C lib/mlx
+
+$(NAME): $(LIBFT) $(MLX_LIB) $(OBJS)
 	$(CC) $(OBJS) $(MLX) $(LIBFT) -o $(NAME)
 
-$(BONUS_NAME): $(BONUS_OBJS)
+$(BONUS_NAME): $(LIBFT) $(MLX_LIB) $(BONUS_OBJS)
 	$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -o $(BONUS_NAME)
-
-all: $(NAME)
 
 bonus: $(BONUS_NAME)
 
 clean:
 	rm -f $(OBJS) $(BONUS_OBJS)
+	make -C lib/libft clean
+	make -C lib/mlx clean
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
+	make -C lib/libft fclean
+	make -C lib/mlx clean
 
 re: fclean all
 

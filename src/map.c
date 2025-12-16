@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/10 18:07:09 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/12 19:23:41 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	alloc_and_read(t_map *map, const char *filename)
 	height = count_lines(filename);
 	if (height < 3)
 	{
-		ft_printf("Error: Map is too small\n");
+		ft_printf("Error\nMap is too small\n");
 		return (0);
 	}
 	map->grid = malloc(sizeof(char *) * (height + 1));
