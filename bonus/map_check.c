@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:17:14 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/10 15:29:53 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:43:02 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	grid_check(t_map *m)
 	if (count_elems(m) < 0)
 		return (-1);
 	if (m->spawn != 1 || m->exit != 1 || m->collectiable < 1 || m->alien != 1)
-		return (-1);
-	if (m->height == m->width)
 		return (-1);
 	return (0);
 }
