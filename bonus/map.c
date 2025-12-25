@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*   By: martinmust <martinmust@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 13:27:16 by mmustone          #+#    #+#             */
-/*   Updated: 2025/12/16 16:01:04 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/12/25 21:56:47 by martinmust       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	alloc_and_read(t_map *map, const char *filename)
 		ft_printf("Error\nMalloc\n");
 		return (0);
 	}
-	if (!read_grid(map, filename, height)){
+	if (!read_grid(map, filename, height))
+	{
 		ft_printf("Error\nMap problem\n");
 		return (0);
 	}
